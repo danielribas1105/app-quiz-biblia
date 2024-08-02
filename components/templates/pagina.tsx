@@ -5,7 +5,7 @@ export interface PaginaProps {
     children: React.ReactNode
 }
 
-const background = require('@/assets/images/background.png')
+const background = require('@/assets/images/background.jpg')
 
 export default function Pagina(props: PaginaProps) {
     return (

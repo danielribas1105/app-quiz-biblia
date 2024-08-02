@@ -1,10 +1,13 @@
 import Pagina from "@/components/templates/pagina";
-import { Text, View } from "react-native";
+import Logo from "@/components/templates/logo";
+import Pergunta from "@/components/questionario/pergunta";
+import perguntas from "@/data/constants/perguntas";
 
 export default function Index() {
   return (
     <Pagina>
-      <Text style={{ fontFamily: 'MorrisRomanBlackAlt' }}>Quiz Bíblia</Text>
+      <Logo/>
+      <Pergunta pergunta={perguntas[0]}/>
     </Pagina>
   );
 }
