@@ -1,15 +1,10 @@
+import Pagina from "@/components/templates/pagina";
 import { Text, View } from "react-native";
 
 export default function Index() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Quiz Bíblia</Text>
-    </View>
+    <Pagina>
+      <Text style={{ fontFamily: 'MorrisRomanBlackAlt' }}>Quiz Bíblia</Text>
+    </Pagina>
   );
 }
