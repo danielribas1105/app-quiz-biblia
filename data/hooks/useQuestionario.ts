@@ -3,8 +3,47 @@ import todasAsPerguntas from '@/data/constants/perguntas'
 
 export default function UseQuestionario() {
     const [indicePergunta, setIndicePergunta] = useState(0)
-    const [repostas, setRespostas] = useState<string[]>([])
-    const [perguntas, setPerguntas] = useState(todasAsPerguntas.slice(0, 10))
+    const [respostas, setRespostas] = useState<number[]>([])
+    const [perguntas, setPerguntas] = useState(sortearPerguntas())
 
+    function sortearPerguntas() {
+        const perguntasEmbaralhadas = [...todasAsPerguntas]
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 10)
+        
+        return perguntasEmbaralhadas
+    }
+
+    return {
+        get pergunta() {
+            return perguntas[indicePergunta]
+        },
+
+        get pontuacao() {
+            return perguntas
+                .map((p) => p.resposta)
+                .map((resp, i) => (resp === respostas[i]))
+                .filter((v) => v).length
+        },
+
+        get totalDePerguntas() {
+            return perguntas.length
+        },
+
+        get concluido() {
+            return indicePergunta === perguntas.length
+        },
+
+        responder(resposta: number) {
+            setRespostas([...respostas, resposta])
+            setIndicePergunta(indicePergunta + 1)
+        },
+
+        reiniciar() {
+            setIndicePergunta(0)
+            setRespostas([])
+            setPerguntas(sortearPerguntas())
+        }
+    }
 
 }

@@ -1,13 +1,24 @@
 import Pagina from "@/components/templates/pagina";
 import Logo from "@/components/templates/logo";
 import Pergunta from "@/components/questionario/pergunta";
-import perguntas from "@/data/constants/perguntas";
+import UseQuestionario from "@/data/hooks/useQuestionario";
+import Resultado from "@/components/questionario/resultado";
 
 export default function Index() {
+
+  const {pergunta, concluido, pontuacao, totalDePerguntas, reiniciar, responder} = UseQuestionario()
+
   return (
     <Pagina>
       <Logo/>
-      <Pergunta pergunta={perguntas[0]}/>
+      { concluido ? (
+        <Resultado 
+          pontuacao={pontuacao} 
+          totalDePerguntas={totalDePerguntas} 
+          reiniciar={reiniciar}/>
+      ) : (
+        <Pergunta pergunta={pergunta} opcaoSelecionada={responder}/>
+      )}
     </Pagina>
   );
 }
